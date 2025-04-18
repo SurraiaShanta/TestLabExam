@@ -1,0 +1,12 @@
+<suite name = "LabTest">
+    <test name="Registration">
+        <classes>
+            <class name ="Tests.RegistrationTest"/>
+        </classes>
+    </test>
+    <test name="Login">
+        <classes>
+            <class name ="Tests.LoginPageTest"/>
+        </classes>
+    </test>
+</suite>
