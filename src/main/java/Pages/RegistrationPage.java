@@ -15,21 +15,9 @@ public class RegistrationPage {
 
     public RegistrationPage(){
         this.driver = DriverManager.getDriver();
-
     }
 
-    public void ClickRegisterNow(){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
-        WebElement RegisterNowButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/div[2]/div/div/div/div/div[2]/div[2]/div[2]/div/div/a/span/span")));
-        RegisterNowButton.click();
-    }
-
-    public void ClickCandidateButton(){
-        WebElement CandidateButton = driver.findElement(By.xpath("//*[@id=\"jet-theme-core-document\"]/div/div/div/div/div/div/div/div[3]/div/div[2]/div/div/div/a/div[4]"));
-        CandidateButton.click();
-    }
-
-    public void setUsername(String username){
+   public void setUsername(String username){
        // WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
         //WebElement UserName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"username\"]")));
         WebElement UserName = driver.findElement(By.xpath("//*[@id=\"username\"]"));
@@ -55,16 +43,19 @@ public class RegistrationPage {
         ConfrimPassword.sendKeys(confirmpassword);
     }
 
-    public void ClickRegistrationNow(){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
-        WebElement RegistrationButtn = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/div[2]/div/div/div/div/div/div/div[2]/div[4]/div/form/div[5]/div/div/button")));
-        //WebElement RegistrationButtn = driver.findElement(By.xpath("//*[@id=\"jet-theme-core-document\"]/div/div/div/div/div/div/div[2]/div[4]/div/form/div[5]/div/div/button"));
-        RegistrationButtn.click();
+    public void ClickRegistrationNow() throws InterruptedException {
+        //WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+        //WebElement RegistrationButtn = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"jet-theme-core-document\"]/div/div/div/div/div/div/div[2]/div[4]/div/form/div[5]/div/div/button")));
+
+        WebElement RegistrationButtn = driver.findElement(By.xpath("//*[@id=\"jet-theme-core-document\"]/div/div/div/div/div/div/div[2]/div[4]/div/form/div[5]/div/div/button"));
+        Actions action = new Actions(driver);
+        action.moveToElement(RegistrationButtn).perform();
+        Thread.sleep(5000);
+        action.doubleClick(RegistrationButtn).perform();
+        //RegistrationButtn.click();
     }
 
-    public void Registration(String username, String email, String password, String confirmpassword){
-        ClickRegisterNow();
-        ClickCandidateButton();
+    public void Registration(String username, String email, String password, String confirmpassword) throws InterruptedException {
         setUsername(username);
         SetEmailAddress(email);
         SetPassword(password);
