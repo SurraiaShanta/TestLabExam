@@ -14,24 +14,28 @@ public class RegistrationTest extends BaseTest {
 
     @Test(priority = 1)
     public void Invalidregistration() throws InterruptedException {
+        driver.get("https://labsqajobs.qaharbor.com/candidate-registration/");
         RegistrationPage regi = new RegistrationPage();
-        regi.Registration("Admin_123456", "shgmail.com","QAH12harbor","QAHharbor");
+        Thread.sleep(2000);
+        regi.Registration("Admiqntt_123654", "shgmail.com","QAH12harbor","QAHharbor");
 
-        Thread.sleep(3000);
-        String ActualURL=driver.getCurrentUrl();
         String ExpectedURL = "https://labsqajobs.qaharbor.com/candidate-registration/?status=success";
-        Assert.assertEquals(ActualURL,ExpectedURL,"Registration error");
+        String ActualURL=driver.getCurrentUrl();
+        Assert.assertNotEquals(ActualURL,ExpectedURL,"Registration error");
     }
 
 
 
-    @Test(priority = 2)
-    public void validRegistration(){
+    @Test(priority = 1)
+    public void validRegistration() throws InterruptedException {
+        driver.get("https://labsqajobs.qaharbor.com/candidate-registration/");
        RegistrationPage regis = new RegistrationPage();
-       regis.Registration("Admin_1234568","shanta@gmail.com", "QAH132harbor","QAH132harbor");
+       regis.Registration("Admin65432","Admin65432@gmail.com", "Admin65432","Admin65432");
+        Thread.sleep(5000);
 
-        String ActualURL = driver.getCurrentUrl();
         String ExpectedURL = "https://labsqajobs.qaharbor.com/candidate-registration/?status=success";
+        String ActualURL = driver.getCurrentUrl();
+        Thread.sleep(5000);
         Assert.assertEquals(ActualURL,ExpectedURL,"Registration error");
     }
 
