@@ -6,12 +6,18 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 
 public class BaseTest {
-    protected WebDriver driver;
+   public static WebDriver driver;
 
     @BeforeSuite
     public void setup(){
         driver = DriverManager.getDriver();
-        driver.get("https://labsqajobs.qaharbor.com/login/");
+        driver.get("https://labsqajobs.qaharbor.com/");
+    }
+
+    @BeforeMethod
+    public static void manageWindows(){
+        driver.manage().deleteAllCookies();
+        driver.manage().window().maximize();
     }
 
     @AfterSuite
